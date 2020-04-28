@@ -9,6 +9,9 @@
   <script>
     let arr=[2,5,1,9,3,4,6]
 
+    //逻辑：递归合并   在数组中间拆出一个值，数组分为左数组和右数组。每个数组由递归这样分下去。最后只剩下长度为1和2的数组。
+    //再进行合并 ，大于中间值的在右 ，小于中间值的在左，最终组成有序数组
+
     function mergeSort(arr) {
     if(arr.length <= 1) return arr		//数组元素被划分到剩1个时，递归终止  
     const midIndex = arr.length/2 | 0

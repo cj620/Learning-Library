@@ -7,31 +7,34 @@
 </head>
 <body>
   <script>
-    let A  =function(name){
-      this.name = name
-    }
-    A.prototype.b = function(){
-      console.log(this.name);
-    }
-    let a = new A("hah")
-    a.d = function(){
-      console.log("gg");
-    }
-    A.gp= function(){          //动态的给构造函数中添加方法，他的实例对象不能继承到
-      console.log("oo");
+ new Promise((resolve, reject) => {
+        setTimeout(() => {
+          console.log("a");
+            resolve(1)               //需要进行异步回调，停下来了。所以让ab先执行了  
+            console.log("b");       //ab执行完毕，再把执行权交给resolve ,执行成功回调
+        }, 1000)
+    })
+    .then((data) => {
+        console.log('result1', data)
+       return 2                    //返回数字
+    })
+    .then((data) => {
+        console.log('result2', data)
+       return Promise.reject(3)   //返回调用reject的promise
+    })
+    .then((data) => {
+        console.log('result3', data)
+       return Promise.resolve(4) //前面的promise执行reject了  使得后面所有返回的promise状态都是rejected，
+      })                   
+    .catch(season =>{             //最后rejected传给catch 
+      console.log(season);
       
-    }
-    // a.b()
-    console.log(A);
-    console.log(A.prototype);
-    console.log(a);
-    console.log(a.constructor); // 原型和实例对象的 constructor都指向构造函数
+    })
+
+    //结果 ： a b result11 result22 3
     
-    A.gp()
-    
-    
-    
-    
+
+
   </script>
 </body>
 </html>

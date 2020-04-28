@@ -12,8 +12,8 @@
       for(let i=0;i<arr.length;i++){
         for(let j=0;j<arr.length-i-1;j++){ //arr.length-i-1; length-i省略掉前面已经冒泡的组合
           if(arr[j]>arr[j+1]){             //length-1； 因为数组下标j+1会造成溢出，所以需要-1
-            let temp=arr[j] 
-            arr[j]=arr[j+1]
+            let temp=arr[j]                //数值大的往后冒泡
+            arr[j]=arr[j+1]               
             arr[j+1]=temp
           }
         }

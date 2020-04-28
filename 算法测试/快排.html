@@ -7,8 +7,11 @@
 </head>
 <body>
   <script>
-    let arr=[2,5,1,9,4,6]
 
+    //逻辑： 在数组中拆分出一个中间值，分成左右两个数组。然后遍历数组，大于中间值的放入右数组，小于中间值的放入左数组。
+    //返回一个递归上述方法的新数组。也就是左右数组继续去拆分，遍历，按大小重组，最后得到一个有序数组
+
+    let arr=[2,5,1,9,4,6]
     function quickSort(arr){
       if(arr.length <= 1){ return arr }
       const pivotindex = Math.floor(arr.length / 2)
