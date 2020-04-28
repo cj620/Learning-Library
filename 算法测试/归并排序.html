@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let arr=[2,5,1,9,3,4,6]
+
+    function mergeSort(arr) {
+    if(arr.length <= 1) return arr		//数组元素被划分到剩1个时，递归终止  
+    const midIndex = arr.length/2 | 0
+    const leftArr = arr.slice(0, midIndex)                  //利用slice将数组从中间拆分
+    const rightArr = arr.slice(midIndex, arr.length)
+    return merge(mergeSort(leftArr), mergeSort(rightArr))	//先划分，后合并  mergeSort使数组一直分解到最小单位，merge将数组进行整合 利用递归的方法进行
+}
+function merge(leftArr, rightArr) {          //合并方法
+    const result = []
+    while(leftArr.length && rightArr.length) {               //通过递归已经成为最小可分的数组单位 也就是两个数组的长度为1或者2
+    	leftArr[0] <= rightArr[0] ? result.push(leftArr.shift()) : result.push(rightArr.shift()) //将两数组的第一位比较，最小的放入容器result
+                                                                                //执行完则会一步之后，两个数组的剩余长度为1或0，剩下的数肯定使最大的一个
+    }                                                                           //所以直接push到result里
+    while(leftArr.length) result.push(leftArr.shift())          
+    
+    while(rightArr.length) result.push(rightArr.shift())
+    return result
+}
+console.log(mergeSort(arr));
+
+  </script>
+</body>
+</html>

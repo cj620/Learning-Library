@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .father{
+    width: 500px;
+    height: 500px;
+    background-color: pink;
+  }
+  .child{
+    width: 100px;
+    height: 100px;
+    background-color: yellow;
+  }
+                    /* 1.flex布局 居中 */
+
+  /* .father{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  } */
+
+                      /* 2. 子绝父相 外边自动 四方挤压*/
+
+  /* .father{
+    position: relative;
+  }          
+  .child{
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }       */
+
+                        /* 3.子绝父相 子盒子自己移动     */
+    .father{
+      position: relative;
+    }
+    .child{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+    }
+
+
+
+</style>
+<body>
+  <div class="father">
+    <div class="child">
+    </div>
+  </div>
+</body>
+</html>

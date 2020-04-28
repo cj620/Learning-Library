@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+   Function.prototype.Myapply = (thisArg,args) =>{
+     let fn = Symbol("fn")                 //创建一个唯一的名字 为了解决函数名冲突
+      thisArg = thisArg || window         //判断thisArg参数  
+      thisArg[fn] = this                  //thisArg[fn]是一个暂时虚拟的方法，将调用Myapply的方法上下文赋值给这个虚拟的方法
+      const result = thisArg[fn](...args) //执行这个虚拟方法 存储在result中
+      delete thisArg[fn]                  //删除这个零时的方法
+      return result                       //返回结果
+   }                                      // 总结： thisArg借用别人的函数 ，来完成自己的事情
+  </script>
+</body>
+</html>

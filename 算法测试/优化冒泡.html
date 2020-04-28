@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let arr=[5,48,3,6,1,4,1,2,7]
+    function bubble(arr){                 //由于未优化前，冒泡操作是无差别的
+      for (let i=0;i<arr.length;i++){     //如果有序数组进行冒泡，会浪费性能   
+        let flag=true                     //所以增加一个flag，来判断数组在冒泡途中是否已经排序完成，直接停止排序
+        for(let j=0;j<arr.length-i-1;j++){
+          if(arr[j]>arr[j+1]){
+            flag=true
+            let temp=arr[j]
+            arr[j]=arr[j+1]
+            arr[j+1]=temp
+          }
+        }
+        if(true){break}
+      }
+      return arr
+    }
+    bubble(arr)
+    console.log(arr);
+    
+  </script>
+</body>
+</html>

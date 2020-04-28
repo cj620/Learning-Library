@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  /* calc */
+  /* .father{
+    height: 100px;
+    background-color: pink;
+  }
+  .left{
+    width: 100px;
+    background-color: yellow;
+    float:left;
+  }
+  .right{
+    width: calc(100%-50px);
+    float: right;
+    background:blue;
+  } */
+
+  /* flex */
+  .father{
+    display: flex;
+    height: 100px;
+    background-color: pink;
+  }
+  .left{
+    width: 50px;
+    background-color: yellow;
+  }
+  .right{
+    background-color: blue;
+    /* flex的第一个参数为grow值，以比例增长 */
+    flex: 1;                   
+  }
+</style>
+<body>
+  <div class="father">
+    <div class="left">left</div>
+    <div class="right">right</div>
+  </div>
+</body>
+</html>

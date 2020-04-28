@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+   <script>
+    //  分析：  相比于call和apply，bind的返回的是一个函数，并且这个函数完成的任务与apply相同。
+    //这个新函数的 this 被指定为 bind() 的第一个参数，而其余参数将作为新函数的参数，供调用时使用。
+    //另外由于返回的是一个函数，要考虑这个返回函数作为构造函数被new时的this指针变化，并且保留原型的属性
+    Function.prototype.myBind = function(thisArg , ...args){// ...自定义名 代表剩余参数
+        let self = this   //为了区分两种this的上下文，先将指向调用者的this保存在self中，
+        let fn = function(){       //把fn当作返回函数去制造
+          self.apply(this instanceof self ? this : thisArg , args.concat(Array.prototype.slice.call(arguments)))//借用数组原型上的slice，复制一份
+            //这个新函数的任务，是将this指向第一个参数，其他参数作为新函数的参数，并且还得接受其他参数得传入(这个新函数要模仿调用者)
+            //为了区分fn被new时和正常执行得不同，这里需要用instanceof加一层判断
+
+            // 1. fn函数被当作构造函数，被new运算
+            //那么fn中的this指向new出来的实例，也就是说这个新对象是调用者原型的一个实例（this.__proto__ === self.prototype）
+            //instanceof 判断成立 
+            //根据原型链原理，优先调用自己的属性，再去原型链上查找。为了不丢失实例自身的属性，那么这个apply的第一个参数就只能是new出来的实例，也就是被new时的this
+            
+            // 2. fn被正常调用
+            //默认调用者不在原型链上，也就不需要考虑原型链的要求。直接使用apply将this指向bind的第一个参数，将其他的参数作为新函数的实参。
+            //这里考虑到fn函数也需要接收参数(arguments)，所以需要将 bind剩余的实参和fn函数接收的参数进行拼接 成为新的参数数组
+        }
+        // 这时候自己写得fn的prototype指向的是终端原型，因为fn是按调用者的样子造出来的，但是只有调用者的属性，缺少调用者原型上的属性，不够全面。
+        //所以将要将fn链接到调用者的原型链上去
+        fn.prototype = Object.create(self.prototype)
+        //首先我们是想将调用者得prototype直接当作fn得原型，也就是fn.prototype = this.prototype 但是这个写法使得两者指向了同一个地址,会有一定风险。
+        //也就是说当我们对fn.prototype进行修改时，会影响到self.prototype得属性。所以不如将self.prototype得一个实例当作fn得原型，就解决了这个问题。
+        return fn
+    }
+
+
+    //测试
+    const obj = { name: 'i am cj' }
+    function foo() {
+    console.log(this.name)
+    console.log(arguments)
+}
+
+foo.myBind(obj, 'a', 'b', 'c')()  
+
+   </script>
+</body>
+</html>

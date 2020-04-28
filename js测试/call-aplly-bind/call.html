@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+//     let Person = {
+//             name: 'Tom',
+//             say() {
+//                 console.log(`我叫${this.name}`)
+//             },
+//             sing() {
+//                 console.log(`他叫${this.name}`)
+//             }
+//         }
+//         let Person1 = {
+//           name: 'tom2'
+//         }
+//     //  Person.say.call(Person1) //理解为一个方法去调用call方法。
+      
+//     Function.prototype.myCall = function(thisArg, ...args) {
+//     const fn = Symbol('fn')        // 声明一个独有的Symbol属性, 防止fn覆盖已有属性
+//     thisArg = thisArg || window 
+//        // 若没有传入this, 默认绑定window对象
+//     thisArg[fn] = this  // 这个this指向他的方法
+//     console.log(this)
+//     // console.log(thisArg)
+//   // console.log(thisArg[fn])
+//               // this指向调用call的对象,即我们要改变this指向的函数
+//     const result = thisArg[fn](...args)  // 执行当前函数
+//     delete thisArg[fn]              // 删除我们声明的fn属性
+//     return result                  // 返回函数执行结果
+// }
+
+// Person.say.myCall(Person1)
+// Person.sing.myCall(Person1)
+
+let a={
+  name:"baba",
+}
+function b(){
+  console.log("HH");
+}
+const fn=Symbol("fn")   //symbal 使用与直接调用不同 要包在[]里
+// a[fn]=b                 //就相当于将fn变成了一个唯一的名字，其本质还是变量，只是不可以改变
+// a.fn=b
+// console.log(a);
+// a.fn()
+// a[fn]()
+// console.log(fn);
+a.ui=fn
+console.log(a);
+
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let arr=[2,5,1,9,4,6]
+
+    function quickSort(arr){
+      if(arr.length <= 1){ return arr }
+      const pivotindex = Math.floor(arr.length / 2)
+      const pivot = arr.splice(pivotindex,1)[0]
+      const left=[]
+      const right=[]
+      arr.forEach(res =>{
+        res < pivot ? left.push(res):right.push(res)
+
+      });
+      return [...quickSort(left),pivot,...quickSort(right)]
+    }
+    console.log(quickSort(arr))
+    
+  </script>
+</body>
+</html>

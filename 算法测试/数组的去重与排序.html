@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let arr = [7,2,2,3,3,4,4,58,9,9,-1,-3]
+    let result = []
+    for(let i = 0;i < arr.length;i++){
+      if(result.indexOf(arr[i]) == '-1'){   //创建一个新的数组，遍历旧数组
+        result.push(arr[i])                 //每次用indexOf判断新数组有无旧数组的值
+      }                                      //有就掠过，无则放入新数组
+    }
+    console.log(result);
+                                        //indexOf的测试 
+    console.log("name".indexOf("m"));   //结果2  indexof 检索到后面的值时，会返回这个值所在的index
+    console.log("name".indexOf("n"));   //结果0
+    console.log("name".indexOf("p"));   //结果-1  没有检索到 则返回-1
+    
+
+    result.sort((a,b) => {     //sort()方法 直接调用sort的方法排序，是按字符编码进行排序，结果不准确
+        return a-b             //所以通过回调一个函数 并且通过返回a，b参数进行判断
+    })                         // a-b为正序，b-a为倒序
+    console.log(result);
+    
+
+  </script>
+</body>
+</html>

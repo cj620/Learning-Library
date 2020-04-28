@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+<!-- 父组件 -->
+<!-- 子组件一定是在父组件中展示的 -->
+  <div id="app">                        
+    <cpn :cinfo="info"></cpn>                     
+  </div>
+
+<!-- 子组件   使用子组件中的数据-->
+<template id="zcpn">
+ <h2>{{cinfo}}</h2>                    
+</template>
+
+
+  <script src="./js/vue.js"></script>
+  <script>
+  
+
+  // 子组件
+  const cpn={
+    template:"#zcpn", 
+    props:{
+      cinfo:{
+        type:Object,
+        default(){
+          return { }
+        }
+      }
+    }
+  }
+
+
+    const app=new Vue({
+      el:'#app',
+      data:{
+        info:{
+          name:"cj",                   //将这里的数据传到子组件中  然后能在子组件模板中展示
+          age:18,
+          height:"1.88"                //在子组件标签 通过绑定 将父组件的数据传递给相对应的子组件数据
+        }
+      },
+      methods:{},
+      components:{                    //子组件要在父组件的components中注册
+        cpn
+      }
+    })
+  </script>
+</body>
+</html>

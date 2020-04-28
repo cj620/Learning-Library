@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!--                                                       3              -->
+  <!-- @itemclick 触发了cpnclick  由于cpnclick函数是带参数的，标签里的没有参数，所以会默认传入event事件 -->
+  <div id="app">
+    <cpn @itemclick='cpnclick'></cpn>      
+  </div>
+
+<template id="zcpn">
+  <div>                      
+    <!-- 为了将子组件的数据传出 通过监听点击来触发  自定义的事件   item就是v-for里的item -->
+    <!-- 2-->
+     <button v-for="item in cate"  @click="btnclick(item)">{{item.name}}</button>
+</div>
+</template>
+
+
+  <script src="./js/vue.js"></script>
+  <script>
+// 子组件
+  const cpn={
+    template:"#zcpn",
+    data(){
+      return {
+        cate:[
+          {id:"1",name:"one"},
+          {id:"1",name:"two"},
+          {id:"1",name:"three"},
+          {id:"1",name:"four"}
+        ]
+      }
+    },
+    methods:{
+      btnclick(item){                       //            1
+        this.$emit('itemclick',item)       //监听模板的点击事件 获得item 进行动作
+      }                                    //动作：使用this.$emit来发射一个自定义事件，以及item
+    }                                      //这个itemclick事件，相当于放到了父组件中，如click一样的默认事件，@itemclick来触发父组件的function
+  }
+
+
+    const app=new Vue({
+      el:'#app',
+      data:{},
+      methods:{
+        cpnclick(item){
+          console.log(111,item); 
+        }
+      },
+      components:{
+        cpn
+      }
+    })
+  </script>
+</body>
+</html>

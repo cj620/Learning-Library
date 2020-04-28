@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <ui>
+            <li v-for='item in arr'  >{{item}}</li>
+        </ui>
+        <div class="a" :style='basestyle'>{{msg}}</div>
+        <button @click='add' ></button>
+
+        <button @click="btn3(123,$event)"></button>  
+         <!-- //给标签绑定事件时，如果没有要求设定参数，可以省略括号。而如果需要设定参数而没有设定则参数默认为鼠标监听事件，如果是多个参数，则需要使用$event来确定鼠标事件。 -->
+        </div>
+</body>
+<script src="../vue.js"></script>
+<script>
+let arr=[1,2]
+let total=arr.filter(n=>n>0).map(n=>n*2).reduce((pre,now)=>pre+now,0)
+console.log(total);
+
+</script>
+<script>
+    var app=new Vue({
+        el:'#app',
+        data:{
+            msg:'hhh',
+            arr:['111','2220','333'],
+            basestyle:'color:red',
+            bae:'font-size:20px',
+        },
+        methods:{
+            add(){
+                if(this.msg=='hhh'){
+                   this.msg='555'
+                }else{
+                    this.msg='hhh'
+                }
+            },
+            btn3(abc,event){
+                console.log(abc,event);
+                
+            }
+
+        }
+    })
+</script>
+</html>

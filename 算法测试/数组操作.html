@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let arr = [1,2,3,4,5,6]
+    arr.splice(1,2)               //splice从数组中去掉某些项，返回的还是原来的数组，只是被改变了
+    console.log(arr);             //splice(index,howmany)
+
+    let arr1 = [1,2,3,4,5,6]
+    let arr2 = arr1.slice(1,3)    //slice(index,index)返回的是截取的数组，不是原来的数组。
+    console.log(arr2);
+
+    let arr3 = arr1.pop()        //切去最后的元素，并返回这个元素
+    console.log(arr3);           
+
+//push（）从尾部开始添加一个值
+    console.log(arr1.shift());   //shift方法都是在数组头部进行操作，shift是在头部删除,
+    console.log(arr.unshift(2));// shift方法都是返回的数组长度
+    
+
+    console.log(arr.join(","));   //join将数组分割为字符串
+    
+    let words="hello my friend !"
+    console.log(words.split(" "));    //split将字符串分割为数组
+    
+    
+    
+    
+    
+    
+    
+  </script>
+</body>
+</html>

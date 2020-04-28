@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <mycpn></mycpn>
+    <mycpn></mycpn>
+    <mycpn></mycpn>
+  </div>
+  <script src="./js/vue.js"></script>
+  <script>
+    // 创建组件构造器以及模板
+    const cpn=Vue.extend({template:`<div> hahahah safdf</div>`});   
+    // 注册组件 第一个参数为自定义的标签名 第二个参数是组件构造器 
+    Vue.component("mycpn",cpn);
+    const app=new Vue({
+      el:'#app',
+      data:{},
+      methods:{},
+    })
+  </script>
+</body>
+</html>
