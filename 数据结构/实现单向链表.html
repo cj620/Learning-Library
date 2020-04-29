@@ -58,15 +58,24 @@
           let current = this.head       //将current指向第一个节点
           let previous = null           //pre指向current的前一个位置   在这两个位置之间插入新节点
           while(index < position){      //由于是链表结构  需要从头定位到position的位置 用index向下寻找
-            index += 1                 
+            index += 1                  //用while来移动参照物
             previous = current          //每次将current和previous都向后移动一个单位   直至current到达position的位置（初始index和current的都是在0的状态）
             current = current.next
           }
-          newnode.next = current
+          newnode.next = current        //开始插入操作
           previous.next = newnode
         }
+        this.length +=1
+        return true
       }
+      //查找操作
+      LinkList.prototype.XXX = function(position,data){
+        //有位置信息 则要进行越界判断
+        //初始用current指向第一个节点 index从零开始
+        //利用while向后挪动指针 直到找到需要的位置 再进行想要的操作  （注意在头节点和末端节点的操作 可能要进行区分）
+        //返回要求的结果                                            （如果操作影响了长度，要注意修改长度）
 
+      }
     }
 
 
