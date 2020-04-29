@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //封装链表类
+    function LinkList(){
+      //内部的类 节点构造函数
+      function Node(data){
+        this.data = data   //得到传入的数据
+        this.next = null   //默认指向空
+      }
+      //链表的属性
+      this.head = null  //头节点指向空
+      this.length = 0   //初始长度为0
+      //链表的方法  在链尾增加一个节点
+      LinkList.prototype.append = function(data){
+        var newNode = new Node(data)  //1.先创建一个节点 
+
+        if(this.length ==0){   //根据链表长度是否为0，判断链表中是否有数据
+          this.head = newNode //没有其他节点  就直接将头指针指向的位置 放入这个新节点
+        }else{
+          var current = this.head //用一个新的指针 接受头指针 让这个新指针去找到最末端的节点
+          while(current.next){    //如果判断当前的节点，是否有下一个节点
+            current = current.next  //有就指向下一个节点 
+          }
+          current.next = newNode  //当找到某个节点没有下一个节点  把这个新的节点作为它下一个节点
+        }
+        this.length +=1     //链表长度加一 
+      }
+      LinkList.prototype.toString = function(){
+        var current = this.head            //拿到头指针指向的节点 
+        var outPut = ' '
+        while(current){                    //判断这个节点是否存在 存在则执行完操作之后 指向下一个节点
+          outPut += current.data + ' '
+          current = current.next
+        }
+        return outPut
+      }
+      //插入方法  有两种情况在在头节点插入 ，和在非头节点插入  这里要借助两个相对位置节点来插入
+      LinkList.prototype.insert = function(position,data){ //position 代表要插入的位置
+        //先对position进行越界判断 不可能插入在负数的位置以及非链表长度内
+        if(position < 0 || position > this.length )
+          return false
+
+        let newnode = new Node(data)   //创建新节点
+
+        if(position == 0){               //在链表第一个节点的位置插入
+          newnode.next = this.head
+          this.head = newnode
+        }
+        else{
+          let index = 0
+          let current = this.head       //将current指向第一个节点
+          let previous = null           //pre指向current的前一个位置   在这两个位置之间插入新节点
+          while(index < position){      //由于是链表结构  需要从头定位到position的位置 用index向下寻找
+            index += 1                 
+            previous = current          //每次将current和previous都向后移动一个单位   直至current到达position的位置（初始index和current的都是在0的状态）
+            current = current.next
+          }
+          newnode.next = current
+          previous.next = newnode
+        }
+      }
+
+    }
+
+
+    //测试
+    let list = new LinkList()
+    list.append("1")
+    list.append("2")
+    list.append("3")
+    list.insert(2,"a")
+    alert(list)   //alert默认执行了toString方法，
+    
+  </script>
+</body>
+</html>
