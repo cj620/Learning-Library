@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function DoubleLinkedList(){
+      //链表属性
+      this.length = 0
+      this.head = null
+      this.tail = null
+      //内部节点类
+      function Node(data){
+        this.pre = null
+        this.next = null
+        this.data = data
+      }
+      DoubleLinkedList.prototype.append = function(data){
+        let newnode = new Node(data)
+        if(this.length == 0){
+          this.head = newnode
+          this.tail = newnode
+        }else{
+          newnode.pre = this.tail
+          this.tail.next = newnode
+          this.tail = newnode
+        }
+        this.length += 1
+       
+      }
+
+      DoubleLinkedList.prototype.toString = function(){
+        return this.backWardString()
+      }
+
+      DoubleLinkedList.prototype.backWardString = function(){
+        let current = this.head
+        let result = " "
+        while(current){
+          result += current.data + " "
+          current = current.next
+        }
+        return result
+      }
+
+      DoubleLinkedList.prototype.forWardString = function(){
+        current = this.tail
+        let result = " "
+        while(current){
+          result  += current.data + " "
+          current = current.pre
+        }
+        return result
+      }
+    }
+
+    //测试
+    let test = new DoubleLinkedList()
+    test.append("1")
+    test.append("2")
+    test.append("3")
+    test.append("4")
+    test.append("5")
+    alert(test)  //12345
+    alert(test.forWardString())//54321
+    alert(test.backWardString())//12345
+    
+    
+  </script>
+</body>
+</html>
