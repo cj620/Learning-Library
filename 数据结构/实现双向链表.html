@@ -55,6 +55,31 @@
         }
         return result
       }
+
+      DoubleLinkedList.prototype.insert = function(position , data){
+        if(position < 0 || position > this.length)
+          return false
+        let newnode = new Node(data)
+        if(this.length == 0){
+          this.head = newnode
+          this.tail = newnode
+        }else if(position == this.length){
+          newnode.pre = this.tail
+          this.tail.next = newnode
+          this.tail = newnode
+        }else{
+          let index = 0
+          let current = this.head
+          while(index++ < position){
+            current = current.next
+          }
+          newnode.next = current
+          newnode.pre = current.pre
+          current.pre.next = newnode
+          current.pre = newnode
+        }
+        this.length +=1
+      }
     }
 
     //测试
@@ -64,6 +89,7 @@
     test.append("3")
     test.append("4")
     test.append("5")
+    test.insert(3,"a")
     alert(test)  //12345
     alert(test.forWardString())//54321
     alert(test.backWardString())//12345
