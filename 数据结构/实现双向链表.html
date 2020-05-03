@@ -32,11 +32,11 @@
        
       }
 
-      DoubleLinkedList.prototype.toString = function(){
+      DoubleLinkedList.prototype.toString = function(){  //转字符串
         return this.backWardString()
       }
 
-      DoubleLinkedList.prototype.backWardString = function(){
+      DoubleLinkedList.prototype.backWardString = function(){ //向后遍历输出
         let current = this.head
         let result = " "
         while(current){
@@ -46,7 +46,7 @@
         return result
       }
 
-      DoubleLinkedList.prototype.forWardString = function(){
+      DoubleLinkedList.prototype.forWardString = function(){ //像前遍历输出
         current = this.tail
         let result = " "
         while(current){
@@ -56,7 +56,7 @@
         return result
       }
 
-      DoubleLinkedList.prototype.insert = function(position , data){
+      DoubleLinkedList.prototype.insert = function(position , data){  //插入
         if(position < 0 || position > this.length)
           return false
         let newnode = new Node(data)
@@ -67,19 +67,31 @@
           newnode.pre = this.tail
           this.tail.next = newnode
           this.tail = newnode
-        }else{
-          let index = 0
-          let current = this.head
-          while(index++ < position){
+        }else{                                      //插入节点的思路：
+          let index = 0                              //首先区分链表的状态和插入的位置，因为插入操作稍有不同
+          let current = this.head                    //插入的时候  一般先确定新插入节点的指向问题 这样就不会影响初始链表结构
+          while(index++ < position){                 //然后再将插入位置的前后节点指向这个新节点
             current = current.next
-          }
-          newnode.next = current
+          }                                      
+          newnode.next = current         
           newnode.pre = current.pre
           current.pre.next = newnode
           current.pre = newnode
         }
         this.length +=1
       }
+
+      DoubleLinkedList.prototype.indexOf = function(data){ //检索
+        let index = 0
+        let current = this.head
+        while(current){
+          if(current.data == data){
+            return index
+          }
+          current = current.next
+          index +=1
+        }
+      } 
     }
 
     //测试
@@ -89,11 +101,10 @@
     test.append("3")
     test.append("4")
     test.append("5")
-    test.insert(3,"a")
     alert(test)  //12345
     alert(test.forWardString())//54321
     alert(test.backWardString())//12345
-    
+    test.insert(3,"a")
     
   </script>
 </body>
