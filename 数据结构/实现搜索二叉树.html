@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //二叉搜索树
+    //左边放小的值，右边放大的数
+    function BinarySearchTree(){
+      //节点
+      function Node(key){
+        this.key = key
+        this.left = null
+        this.right = null
+      }
+      //属性
+      this.root = null
+
+      //方法
+      //插入
+      BinarySearchTree.prototype.insert = function(){
+        var newnode = new Node(key)
+        //判断根节点是否有值
+        if(this.root == null){
+          this.root = newnode
+        }else{
+
+        }
+
+        BinarySearchTree.prototype.insert = function(node,newnode){
+          if(node.key > newnode.key){//向左查找
+            if(node.left == null){
+              node.left = newnode
+            }else{
+              this.insert(node.left,newnode)//递归向下查找
+            }
+          }else{ //向右查找
+            if(node.right ==null){
+              node.right = newnode
+            }else{
+              this.insert(node.right , newnode)
+            }
+          }
+        }
+        //树的遍历
+        //先序遍历
+        BinarySearchTree.prototype.preOrderTraversal = function(){
+
+        }
+
+      }
+    }
+
+    //测试
+    var bst = new BinarySearchTree()
+    bst.insert(11)
+    bst.insert(7)
+    bst.insert(15)
+    bst.insert(5)
+    bst.insert(3)
+    bst.insert(9)
+    bst.insert(8)
+    bst.insert(10)
+    bst.insert(13)
+    bst.insert(12)
+    bst.insert(14)
+    bst.insert(20)
+    bst.insert(18)
+    bst.insert(25)
+
+  </script>
+</body>
+</html>
