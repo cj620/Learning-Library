@@ -8,6 +8,25 @@
 <body>
   <script>
     //由于前一个快排 声明了两个数组，相对来说性能不够完美。可以优化成一个数组操作
+
+    function quickSort(arr, left, right) {          //这个left和right代表分区后“新数组”的区间下标，因为这里没有新开数组，所以需要left/right来确认新数组的位置
+    if (left < right) {
+        let pos = left - 1                      //pos即“被置换的位置”，第一趟为-1
+        for(let i = left; i <= right; i++) {    //循环遍历数组，置换元素
+            let pivot = arr[right]              //选取数组最后一位作为基准数，
+            if(arr[i] <= pivot) {               //若小于等于基准数，pos++，并置换元素, 这里使用小于等于而不是小于, 其实是为了避免因为重复数据而进入死循环
+                pos++
+                let temp = arr[pos]
+                arr[pos] = arr[i]
+                arr[i] = temp
+            }
+        }
+        //一趟排序完成后，pos位置即基准数的位置，以pos的位置分割数组
+        quickSort(arr, left, pos - 1)        
+        quickSort(arr, pos + 1, right)
+    }
+    return arr      //数组只包含1或0个元素时(即left>=right)，递归终止
+}
   </script>
 </body>
 </html>
