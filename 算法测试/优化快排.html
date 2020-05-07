@@ -27,6 +27,14 @@
     }
     return arr      //当left和right两个指针重合，即最后需要继续递归的数组，只剩下1或者0位，则排序结束
 }
+
+//测试
+var arr = [5,1,4,2,3]
+var start = 0;
+var end = arr.length - 1;
+quickSort(arr, start, end)
+console.log(arr);   //12345
+
   </script>
 </body>
 </html>
