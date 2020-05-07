@@ -7,7 +7,7 @@
 </head>
 <body>
   <script>
-    //由于前一个快排 声明了两个数组，相对来说性能不够完美。可以优化成一个数组操作
+    //由于前一个快排 声明了两个数组，相对来说性能很差。可以优化成一个数组操作
 
     function quickSort(arr, left, right) {          //这个left和right代表分区后“新数组”的区间下标，因为这里没有新开数组，所以需要left/right来确认新数组的位置
     if (left < right) {
