@@ -22,10 +22,10 @@
             }
         }
         //一趟排序完成后，pos位置即基准数的位置，以pos的位置分割数组
-        quickSort(arr, left, pos - 1)        
-        quickSort(arr, pos + 1, right)
+        quickSort(arr, left, pos - 1)       //递归操作左边数组 
+        quickSort(arr, pos + 1, right)      //递归操作右边数组
     }
-    return arr      //数组只包含1或0个元素时(即left>=right)，递归终止
+    return arr      //当left和right两个指针重合，即最后需要继续递归的数组，只剩下1或者0位，则排序结束
 }
   </script>
 </body>
