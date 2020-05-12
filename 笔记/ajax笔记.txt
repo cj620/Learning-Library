@@ -1,0 +1,16 @@
+ajax快速理解 
+ 使用ajax的过程可以类比平常我们访问网页的过程
+           1、创建一个XMLHttpRequest类型的对象  相当于打开一个浏览器
+                     //var xhr=new XMLHttpRequest()
+           2、打开与一个网址之间的连接     相当于在地址栏输入访问地址
+                        //xhr.open('GET','add.php')
+          3、通过连接发送一次请求     相当于回车或者点击访问发送请求
+                      //xhr.send(null)
+             4、指定xhr状态变化事件处理函数     相当于处理网页呈现后的操作
+                          //xhr.onreadystatechange=function){
+                               通过xhr.的readystate判断此次请求的响应是否接收完成
+                                 //if(this.readystate===4){
+                                      通过xhr的responseText获取响应的响应体
+                                         console.log(this) 
+                                      }     
+                           }

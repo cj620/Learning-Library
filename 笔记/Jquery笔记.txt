@@ -1,0 +1,53 @@
+1、JQuery入口函数标准方法（两种写法）
+    $(document).ready(function(){});
+2、筛选选择器方法
+          children  子类选择器
+          find          后代选择器
+          siblings    查找兄弟节点，不包括自己本身。
+          parent      查找父亲
+          eq（index） index 从0开始
+          next              找下一个兄弟
+          pre               找上一个兄弟 
+          index（）     会返回当前元素在所有兄弟元素里面的索引（序号）。  
+3、过滤选择器 （之前要加冒号）    ：odd 奇数             ：even 偶数     ：eq 指定下标     ：first ：last         ：last   ：it  
+4、css用法       修改一个样式                          css（样式名，样式值）
+                        修改一个对象的多个样式        css（{样式名：样式值，样式名：样式值}）
+                       获取css样式                           css（样式 ）
+隐式迭代：设置操作时：会给jq内部的所有对象都设置上相同的值
+                 获取的时候：只会返回第一个元素对应的值
+class操作：.addClass 增加类名   .moveClass删除类名
+属性操作：.attr（“目标属性”，“设置值”） 设置单个属性（只能改标签里的东西 ）
+                 .attr（“目标属性”） 获取目标属性的值
+                对于布尔类型的属性，不要attr方法，应该用prop方法  prop方法的用法跟attr方法一样
+ jq动画：  .show 显示效果    不传参数则没有动画效果 
+                 show（speed）  speed为展示时间  
+                 hide（） 与show效果相反
+                 slideDown和slideUp  下滑和上滑动画 
+                  slideToggle   切换动画 
+
+            fadeIn和fadeOut和fadeToggle基本与前面的效果差不多 
+stop（）：停止当前正在执行的动画  
+ 节点操作方法：   创建节点$("<span></span >")                
+                                          append（“jq对象或者dom元素”）添加到子元素的最后面
+                                           prepend（）                 将子元素添加到其他子元素的最前面
+                                           appendTo（）              将子元素添加到父元素中去
+                                         empty（） 和 html（“”）         可清空一个元素的内容（后者容易发生内存泄漏）
+                                         remove（）；移除不残留
+                                         clone（布尔参数）   false：不传参数也是深度复制，不会复制事件
+                                                           true：也是深度复制，会复制事件  
+1、特殊的属性操作   
+                 val（value值）   text（）与html（）       width和height         scrollTop   scrollLeft    offset                    position（只读属性）
+2、事件  
+          注册事件   注册简单事件       on（“click”，function（）{}）
+                          注册委托事件        on（“click”，“p”，function（）{}）父元素委托子元素执行
+     解除事件    解除事件  off()
+                       解除绑定事件   off（“click”）
+                       触发事件         click（）点击事件       trigger（“click”）
+                      e.stopPropagation()
+                      e.preventDefault()
+                      return false;                      这三个都是阻止浏览器默认行为
+  3、补充                链式编程  end（）返回上一个jq对象           $.noConflict()  解决类库$的冲突问题
+                      
+
+
+                               

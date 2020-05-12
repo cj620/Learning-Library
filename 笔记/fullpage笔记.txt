@@ -1,0 +1,13 @@
+ tansform:图像变形                     tansform(scale(0.5));变小成0.5倍
+tansition：两个状态的过度       tansition（目标，完成时间，速度变化，延迟时间）
+animation:动画执行               animation（调动的keyframe对象，执行时间，执行速度变化，延迟时间                                                                   ，执行完的状态 ）
+@keyframes...{from{}to{}}             声明动画帧  需要animation调动执行  
+                                                          @keyframes 动画名{
+                                                                  30%{}     以时间为百分比 分别执行每个阶段的动画
+                                                                   60%{}
+                                                                   100%{}
+                                                                           }
+background-attachment:视差滚动效果	
+语义化标签的作用：  1、从网站的发布者看，seo搜索引擎优化，可以清晰的对网页布局进行优化。
+                                 2、从开发者角度看，提高了代码的可读性和维护性。
+                                  3、ie9一下不支持语义化标签（h5新增的东西都不兼容）
