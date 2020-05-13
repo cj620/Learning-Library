@@ -7,6 +7,12 @@
   <div>{{$store.state.word}}</div>
   <div>{{$store.getters.foo1}}</div>
   <div>{{$store.getters.foo2}}</div>
+  <div>{{$store.getters.foo3('ooooo')}}</div>
+  <button @click="add5(5)">+5</button>
+  <div>{{$store.state.info}}</div>
+  <button @click="infoClick">infoClick</button>
+  <button @click="updataInfo">异步操作</button>
+  <div>{{$store.state.a.name}}</div>
   </div>
 </template>
 
@@ -20,6 +26,24 @@ export default {
     vue1,
     vue2
   },
+  methods:{
+    add5(count){
+      //普通的提交风格
+      // this.$store.commit('increment5',count) //如果方法携带参数，则在commit的第二个参数位置传递过去
+      //特殊的提交封装
+      this.$store.commit({   //以这个风格传递，increment5的第二个参数变成了一个对象
+        type:'increment5',
+        count
+      })
+    },
+    infoClick(){
+      this.$store.commit('foo4')
+    },
+    updataInfo(){       //使用action的异步函数时， 要使用dispatch来调用 
+      this.$store.dispatch('updataInfo','携带的信息').then(res =>{console.log(res);
+      })
+    }
+  }
 }
 </script>
 
