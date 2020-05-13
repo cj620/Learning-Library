@@ -1,28 +1,27 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    hh
+  <vue1/>
+  <vue2/>
+  <div>{{$store.state.number}}</div>
+  <div>{{$store.state.word}}</div>
+  <div>{{$store.getters.foo1}}</div>
+  <div>{{$store.getters.foo2}}</div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import vue1 from './components/1'
+import vue2 from './components/2'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    vue1,
+    vue2
+  },
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
