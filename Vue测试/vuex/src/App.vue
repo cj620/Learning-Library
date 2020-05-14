@@ -11,7 +11,8 @@
   <button @click="add5(5)">+5</button>
   <div>{{$store.state.info}}</div>
   <button @click="infoClick">infoClick</button>
-  <button @click="updataInfo">异步操作</button>
+  <button @click="updataInfo">异步添加</button>
+  <button @click="deleInfo">异步删除</button>
   <div>{{$store.state.a.name}}</div>
   </div>
 </template>
@@ -40,8 +41,12 @@ export default {
       this.$store.commit('foo4')
     },
     updataInfo(){       //使用action的异步函数时， 要使用dispatch来调用 
-      this.$store.dispatch('updataInfo','携带的信息').then(res =>{console.log(res);
+      this.$store.dispatch('updataInfo','添加响应数据').then(res =>{console.log(res);
       })
+    },
+    deleInfo(){
+     this.$store.dispatch('deleInfo','删除成功').then(res =>{console.log(res);
+     })
     }
   }
 }
