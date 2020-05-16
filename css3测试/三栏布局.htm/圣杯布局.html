@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+
+
+  /*
+    https://juejin.im/post/5cf7808fe51d4510a7328081#heading-7
+ 方法：1. 浮动 2. margin负值。
+ 
+1.首先给他们的父级元素main一个左padding值和右padding值，留出来给左右边栏的地方。
+2.给这三个元素浮动起来，然后直接给content元素宽度100%，宽度全都给content了，那left和right就会掉下去。
+3.先给content宽度100%的时候，确实left和right是要掉下去的
+    那咋把left和right这两个烦人的玩意弄到他们的位置上呢？这里就要用到margin的负值，
+    结合浮动使用，那么我们知道浮动起来的几个元素会拍成一行内，而宽度不够才会掉下去，
+    这里就是这种情况，但是如果我给left块一个margin-left负值到一个界限，他就会回到上一行，
+    因为它会向左走，左边没地方了，而且给的是margin值，那么他就会贴到上一行，
+    因为他们是一起浮动的，上一行同样能够接纳他（这里我这样想：比如说宽度足够的时候，
+    那么我给它margin-left负值，它不是一样要往左走吗？一样的道理，
+    它在下一行往左走到没地方走的时候自然就回到了上一行了，因为他们是一起浮动的），
+    这里我给了它margin-left: -100%，
+
+
+
+
+  */
+ .main {
+  padding: 0 200px 0 150px;
+}
+
+body {
+  color: #fff;
+  font-size: 40px;
+  background-color: #666;
+  font-family: Arial;
+  text-align: center;
+}
+
+.content,
+.left,
+.right {
+  float: left;
+  position: relative;
+  height: 400px;
+  line-height: 400px;
+}
+
+.content {
+  width: 100%;
+  background-color: #f5c531;
+}
+
+.left {
+  width: 150px;
+  background-color: #a0c263;
+  margin-left: -100%;
+  left: -150px;
+}
+
+.right {
+  background-color: #a0c263;
+  width: 200px;
+  margin-right: -100%;
+  /* margin-left: -200px; */
+  /*right: -200px;*/
+}
+</style>
+<body>
+  <div class="main">
+    <div class="content">content</div>
+    <div class="left">left</div>
+    <div class="right">right</div>
+  </div>
+</body>
+</html>

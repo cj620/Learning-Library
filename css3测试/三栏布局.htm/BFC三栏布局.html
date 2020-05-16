@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+
+/*
+让左右两边浮动，中间使用overflow:hidden触发BFC模式，
+形成独立渲染区域，不会被浮动元素覆盖
+
+缺点：主要内容模块无法最先加载，当页面中内容较多时会影响用户体验
+*/
+
+	.left {
+	    float: left;
+	    height: 200px;
+	    width: 100px;
+	    margin-right: 20px;
+	    background-color: red;
+	}
+	.right {
+	    width: 200px;
+	    height: 200px;
+	    float: right;
+	    margin-left: 20px;
+	    background-color: blue;
+	}	
+	.main {
+	    height: 200px;
+	    overflow: hidden;
+	    background-color: green;
+	}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left"></div>
+        <div class="right"></div>
+        <div class="main"></div>
+    </div>
+</body>
+</html>

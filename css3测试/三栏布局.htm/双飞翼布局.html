@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+
+/*
+这里面left直接给margin-left: -100%就能到想要的位置，为什么呢？因为要注意一点，在这里，left父级盒子是宽度100%的，
+不再是圣杯布局里面的留出来左右padding值的父级自适应宽度的盒子，这里面使用content盒子的左右margin值留出来的定宽，
+所以直接就能把left盒子定到想要的位置
+那么同理，right盒子也是因为这样，所以直接margin-left: -200px正好贴到父级盒子最右边，就能到想要的位置了。
+
+
+*/
+
+ body {
+  color: #fff;
+  font-size: 40px;
+  font-family: Arial;
+  background-color: #666;
+  text-align: center;
+}
+
+.left,
+.right {
+  float: left;
+  height: 400px;
+  line-height: 400px;
+}
+
+.content-wrapper {
+  width: 100%;
+  float: left;
+}
+
+.content {
+  margin: 0 200px 0 150px;
+  background-color: #f5c531;
+  height: 400px;
+  line-height: 400px;
+}
+
+.left {
+  width: 150px;
+  background-color: #a0c263;
+  margin-left: -100%;
+}
+
+.right {
+  background-color: #a0c263;
+  width: 200px;
+  margin-left: -200px;
+}
+</style>
+<body>
+  <div class="main clearfix">
+    <div class="content-wrapper">
+        <div class="content">content</div>
+    </div>
+    <aside class="left">left</aside>
+    <aside class="right">right</aside>
+</div>
+</body>
+</html>
