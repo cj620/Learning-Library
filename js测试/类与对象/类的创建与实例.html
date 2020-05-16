@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    class Car {
+      constructor(name,price){          //构造器 只要new了这个类，就会立即执行构造器
+        this.name = name                //constructor放置类的共有属性
+        this.price = price
+      }
+      //类的方法
+      buy(word){                //不需要关键词function
+        console.log(word);       //方法之间不需要逗号分隔开
+      }
+  }
+
+    const bmw = new Car('bmw',1000)
+    console.log(bmw);
+    bmw.buy('买不起')
+    
+  </script>
+</body>
+</html>
