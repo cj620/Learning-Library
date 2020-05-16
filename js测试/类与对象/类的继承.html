@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+//执行步骤
+/***
+1. 用Car的子类Bmw来new一个实例对象
+2. new的过程中，向子类Bmw的constructor中传入参数，并执行
+3. constructor执行super() ，super此时携带了constructor传进来的参数
+4. super就相当于父类的构造函数 
+5. bwm调用call(),但是子类没有这个方法，向父类查找
+6. 在父类中找到并执行，
+*/
+/*
+自我总结：
+其实类的操作非常的类似es5中的原型链的原理
+1. 类很类似构造函数，相比只是多了继承的功能 （构造函数也能成链式结构了）
+2.   子类new的实例，就如默认的给它加了一个原型对象super（空对象），子类实例想要
+   调用父类的方法，就是让这个super去执行。
+     这就类似es5中的实例对象与原型对象的关系。
+*/
+
+    class Car {
+      constructor(name,price){          
+        this.name = name               
+        this.price = price
+      }
+      //类的方法
+      buy(word){                
+        console.log(word);       
+      }
+      call(){                     //方法继承给子类，子类调用时，就会在父类找到这个方法，并执行
+        console.log(this.name,this.price);   //但是这个this指针指向不会变，依然指向父类       
+      }
+  }
+//继承类
+  class Bmw extends Car{                  
+    constructor(name,price){
+      // this.name = name//属性无效
+      // this.price = price
+      super(name,price)  //super要放在this操作前
+    }
+  }
+  const bmw = new Bmw('bmw',1000)
+  bmw.call()
+  // console.log(bmw.call());   //调用不成功，this指向没有指向自己
+  
+  </script>
+</body>
+</html>
