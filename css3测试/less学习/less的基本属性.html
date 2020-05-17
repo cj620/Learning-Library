@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+
+<style>
+/*
+      变量
+      
+      （相当于设置一个字符串，可以用在类名）
+@green:red       为颜色red声明变量 使用 color:@green
+@classname:width       为类名设置变量    使用 .{@classname}{}           @classname:10px
+@imgurl:'www.baidu.com/...'
+
+
+
+      延迟加载
+当同作用域的某个变量被声明多次时，前面的会被覆盖   另外{}由块级作用域  变量不会影响
+
+
+
+       混合mixins
+.a{}    带输出混合: 直接将样式解析好 在混入          .b{.a;}
+.a(){}    不带输出混合: 将样式里的代码混入 在解析    .b{.a()}
+
+ 带参混合 有点类似函数
+
+.border(@color:red){                 这里相当于一个可以传参的计算属性   然后将样式代码直接返回出去
+  border:1px solid @color;           冒号后面为默认传参
+}
+
+.b{
+  .border(green);                
+}
+
+
+
+
+*/
+
+
+
+
+
+</style>
+
+</body>
+</html>
