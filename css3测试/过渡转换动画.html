@@ -53,6 +53,39 @@ to{}
 }
 
 
+
+
+   盒子阴影
+
+box-shadow:20px 5px 10px 5px rgba(0,0,0,.5)   
+  阴影向右偏移20px
+  向下偏移5px
+  模糊半径5px
+  阴影的延申尺寸5px
+  颜色
+
+
+
+   伪元素（不会出现在dom中 不会改变文档内容 仅仅在css渲染层加入不可复制的特殊元素）
+           必须包含content属性 至少保证一个空字符串 默认是行内元素
+
+::first-letter    
+::first-line
+::before      在某元素之前添加内容
+::after       在某元素之后添加元素
+::selection   选择用户鼠标选择的元素
+
+
+    渐变(liner-gradient)（要做兼容性适配）chrome使用-webkit-
+创建一个线性渐变至少定义两种颜色节点(可以使用rgba) 还可以设置渐变方向和角度
+
+background:-webkit-liner-gradient(red,blue) 红色向下渐变成蓝色
+background:-webkit-liner-gradient(left,red,blue) 红色从左渐变成蓝色  left为开始点
+background:-webkit-liner-gradient(left top,red,blue) 红色从左上渐变成蓝色 
+background:-webkit-liner-gradient(180deg,red,blue)   从180度叫进行渐变
+多色渐变
+background:-webkit-liner-gradient(left,red,blue,grren,yellow...)  
+
 */
 
   </style>
