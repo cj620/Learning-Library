@@ -76,7 +76,8 @@ box-shadow:20px 5px 10px 5px rgba(0,0,0,.5)
 ::selection   选择用户鼠标选择的元素
 
 
-    渐变(liner-gradient)（要做兼容性适配）chrome使用-webkit-
+    渐变(liner-gradient)
+（要做兼容性适配）chrome使用-webkit-
 创建一个线性渐变至少定义两种颜色节点(可以使用rgba) 还可以设置渐变方向和角度
 
 background:-webkit-liner-gradient(red,blue) 红色向下渐变成蓝色
@@ -85,6 +86,16 @@ background:-webkit-liner-gradient(left top,red,blue) 红色从左上渐变成蓝
 background:-webkit-liner-gradient(180deg,red,blue)   从180度叫进行渐变
 多色渐变
 background:-webkit-liner-gradient(left,red,blue,grren,yellow...)  
+
+
+
+    文本相关
+text-overflow属性
+
+ellipsis 文本超出 显示省略号
+clip     文本超出直接截断     因为文本默认会换行  所以要搭配white-space:nowrap
+
+   
 
 */
 
