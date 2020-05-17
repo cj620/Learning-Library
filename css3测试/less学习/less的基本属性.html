@@ -33,13 +33,28 @@
 .border(@color:red){                 这里相当于一个可以传参的计算属性   然后将样式代码直接返回出去
   border:1px solid @color;           冒号后面为默认传参
 }
-
 .b{
   .border(green);                
 }
 
+ 多参数混合
+
+border(@color:red,@magin:20,@top:2){                 
+  border:1px solid @color;                    @argument可以代表整个传参列表
+}
+ 
+.border(blue,2,2)    每个参数对应一个变量         另外传参顺序不同的话，会自动匹配变量名
+.border(blue,2,2;)   有分号 则一组分号分给一个变量
 
 
+   混合的返回值               看起来像妥妥的计算属性了
+.average(@x,@y){        
+  @average:((@x+@y)/2)
+}
+
+average(x,y){               类似
+  return average = (x+y)/2
+}
 
 */
 
