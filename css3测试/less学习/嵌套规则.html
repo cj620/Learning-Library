@@ -11,8 +11,40 @@
          嵌套规则
 &：父元素选择器
   代表所有的父元素选择器 
-  
+&&： 父元素的所有组合结构  
 
+
+        运算
+能够支持属性值进行相应的计算，如加减乘除。
+运算单位为，某个属性值自带的单位，就会默认这个为最后结果的单位
+
+
+        import引入
+   引入的参数
+once：默认只包含一次
+reference：使用lexx文件但是不输出
+inline：在输出中包含源文件但是不加工它
+less：将文件作为less文件对象，无论什么文件扩展名
+css：将文件作为css文件对象，无论什么文件扩展名
+multiple:允许引入多次相同文件名的文件
+
+
+      条件表达式
+  带条件的混合
+.mixin(@a){color:@a}
+.mixin(@a) when(条件){样式}
+
+  条件书写
+.mixin(@a)when(light(@a) >=50%){样式}
+
+iscolor(@a)
+isnumber(@a)
+isstring(@a)
+...
+ispixel
+ispercent
+isem
+isunit
 
 */
 
