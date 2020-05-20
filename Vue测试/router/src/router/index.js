@@ -79,4 +79,4 @@ router.beforeEach((to,from,next) =>{        //导航守卫   监听路由跳转 
 // })
 
 
-export default router   //导出封装了路由映射的路由对象
+     //导出封装了路由映射的路由对象
