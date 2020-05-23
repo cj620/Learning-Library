@@ -1,0 +1,48 @@
+.content{
+  width: 640px;
+  height: 640px;
+  margin: 50px auto;
+  position: relative;
+}
+.btn{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: rgba(0,0,0,.3);
+  z-index: 2;
+}
+.btn button{
+  cursor: pointer;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+.pauseBtn{
+  display: none;
+}
+
+/* snapwwrap */
+#snakewrap{
+  width: 600px;
+  height: 600px;
+  background-color: #225675;
+  border: 20px solid#7dd9ff;
+  position: relative;
+}
+#snakewrap div{
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+.snakehead{
+  background-color: yellow;
+}
+.snakebody{
+  background-color: blue;
+}
+.food{
+  background-color: red;
+}
