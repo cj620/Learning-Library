@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>选项卡</title>
+  <style>
+    .container{
+      width: 200px;
+      height: 200px;
+      background-color: rgba(0,0,0,.2);
+    }
+    .selected{
+      display: block;
+    }
+    .hide{
+      display: none;
+    }
+  </style>
+</head>
+<body>
+    <button >选项1</button>
+    <button>选项2</button>
+    <button>选项3</button>
+
+    <div id="container">
+      <div class="selected">1111</div>
+      <div class="hide">2222</div>
+      <div class="hide">3333</div>
+    </div>
+
+
+<script>
+
+let con = document.getElementById('container')
+let divs = con.getElementsByTagName('div')
+let btn = document.getElementsByTagName('button')
+function btnClick(n){
+  for(let i = 0;i<divs.length;i++){
+    divs[i].className = "hide"
+  }
+  divs[n].className = "selected"
+}
+
+for(let i = 0;i < btn.length;i++){
+  btn[i].onclick =function(){
+    btnClick(i)
+  }
+}
+</script>
+</body>
+</html>
