@@ -6,6 +6,7 @@ webpack的配置文件
 //resolve用来拼接绝对路径的方法
 const {resolve} = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')             //加载html解析插件 这是以后构造函数
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')      //提取css为单独文件  ，内置处理css的loader
 
 
 module.exports={
@@ -30,7 +31,8 @@ module.exports={
         test:/\.css$/,
         //使用哪些loader
         use:[
-          'style-loader',
+          // 'style-loader',  //创建style标签，将样式放入
+          MiniCssExtractPlugin.loader,
           'css-loader'
         ]
       },
@@ -49,7 +51,7 @@ module.exports={
           esModule:false,
           //给图片进行重命名
           //限定hash值的前10位，[ext]为扩展名
-           name:'[hash:10].[ext]' 
+           name:'[hash:10].[ext]'
         }
       },
       {
@@ -62,7 +64,8 @@ module.exports={
         exclude:/\.(css|js|html|less)$/,
         loader:'file-loader',
         options:{
-          name:'[hash:10].[ext]'
+          name:'[hash:10].[ext]',
+          outputPath:'assets'
         }
       }
     ]
@@ -76,7 +79,8 @@ module.exports={
     //启动gzip压缩
     compress:true, 
     //指定端口号
-    port:3000
+    port:3000,
+    open:true
 
   },
 
@@ -88,6 +92,9 @@ module.exports={
     new HtmlWebpackPlugin({
       //以下面html文件为模板，并自动引入打包输出的所有的资源
       template:'./src/index.html'
+    }),
+    new MiniCssExtractPlugin({
+      filename:'css/build.css'           //对生成的loader进行重命名
     })
   ],
 

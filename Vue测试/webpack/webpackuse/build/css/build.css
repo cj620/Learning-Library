@@ -1,0 +1,10 @@
+body{
+  background-color: #fff;
+}
+.img{
+  width: 100px;
+  height: 100px;
+}
+.a{
+  background-image: url(data:image/jpeg;base64,ZXhwb3J0IGRlZmF1bHQgX193ZWJwYWNrX3B1YmxpY19wYXRoX18gKyAiYXNzZXRzLzYxZjlmZGYxM2YuanBnIjs=);
+}
