@@ -260,8 +260,36 @@ let d = new Dog('xiaogou')
 d.say()   //wangwang
 ```
 
-## 5.TypeScript中的接口
+## 5.TypeScript中的接口interface
 
 > TypeScript中的接口类似java中的定义，起到一种限制和规范的作用。
 >
 > 在这个基础上新增了更加灵活的接口类型，包括属性、函数、可索引和类等
+
+### 1.对批量方法传参进行约束
+
+```typescript
+interface Fullname{   //对对象的约束 属性接口
+    firstName:string
+    secondName:string
+}
+function print(name:FullName){           //直接使用FullName进行约束
+    console.log(name.firstName,name.secondName)
+}
+let obj = {
+    age:20
+    firstName:'c',
+    secondName:'j',
+}
+print(obj) //c j
+```
+
+### 2.接口的可选属性
+
+```typescript
+interface Fullname{   
+    firstName:string
+    secondName?:string   //使用？ 来声明这个属性可传可不传
+}
+```
+
