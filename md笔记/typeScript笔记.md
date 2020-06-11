@@ -293,3 +293,136 @@ interface Fullname{
 }
 ```
 
+### 3.函数类型接口
+
+> 对函数进行约束
+
+```typescript
+interface encrypt{
+    (key:string,value:string):string
+}
+let md5:encrypt = function(key:string,value:string):string{
+    return key+value
+}
+md5("c","j")  //cj
+```
+
+### 4.可索引接口
+
+> 对对象和数组的约束
+
++ 数组的约束
+
+```typescript
+interface UserArr{
+    [index:number]:string            //下标为number类，为数组
+}
+let arr:UserArr = ['c','j']
+console.log(arr[0])   //c
+```
+
++ 对象的约束
+
+```typescript
+interface UserObj{
+    [index:string]:string             //下标为字符类，为对象
+}
+let obj:UserObj = {name:'cj',age:'23'}
+console.log(obj.name,obj.age) //cj 23
+```
+
+### 5.类类型接口
+
+> 对类的约束，与抽象类有点相似
+
+```typescript
+interface Animal{
+    name:string
+    eat(str:string):void
+}
+class Dog implements Animal{
+    name:string
+    constructor(name:string){
+        this.name = name
+    }
+    eat(){
+        console.log(this.name+'吃狗粮')
+    }
+}
+let dog = new Dog('dahuang')
+dog.eat()  //dahuang 吃狗粮
+```
+
+### 6.接口的扩展
+
+> 接口可以继承接口
+
+```typescript
+interface Human{
+    eat():void
+}
+interface Man extends Human{
+    work():void
+}
+class Boy implements Man{
+    eat(){}
+    work(){}
+}
+```
+
+## 6.泛型
+
+### 1.函数泛型
+
+> 解决类、接口、方法、的复用性，以及对待不特定数据类型的支持
+>
+> 要求：传入的参数和返回的参数一致
+>
+> T表示泛型，具体说明类型是调用这个方法的时候决定的
+
+```typescript
+function getData<T>(value:T):T{
+    return value
+}
+getData<number>(123)
+getData<string>('123')         
+```
+
+### 2. 类的泛型
+
+> 在定义类的时候设置泛型，根据传入不同的类型，来决定不同的类型校验
+
+```typescript
+class Fclass<T>{
+    fn(value:T):T{          //传入泛型 
+        return value
+    }
+}  								   //拥有可选的类型校验
+let m1 = new Fclass<number>()      //number泛型
+let m2 = new Fclass<string>()      //string泛型
+```
+
+### 3.泛型接口
+
+> 在接口中定义泛型
+
+```typescript
+//第一种写法
+interface Fn{
+    <T>(value:T):T
+}
+let Get:Fn = function<T>(value:T):T{
+    return value
+}
+Get<string>('cj')   //cj
+
+//第二种写法
+interface Fn<T>{
+    (value:T):T
+}
+let myGet:Get<string> = function Get<T>(value:T):T{
+    return value
+}
+myGet('cj')       //cj
+```
+
