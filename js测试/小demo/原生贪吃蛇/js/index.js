@@ -12,8 +12,6 @@ function Square(x,y,classname){        //方块类
   this.x = x*sw
   this.y = y*sh
   this.class = classname             //方块属性
-  
-
   this.viewContent = document.createElement('div')       
   this.viewContent.className = this.class                  //将方块转换成dom对象
   this.parent = document.getElementById('snakewrap')       //找到方块安放的容器
