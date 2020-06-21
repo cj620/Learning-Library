@@ -144,7 +144,7 @@ const router = new VueRouter({
 
 2. 代码跳转
 
-再标签上绑定事件，通过this.$router.push('/profile')
+在标签上绑定事件，通过this.$router.push('/profile')
 
 ```js
 btnClick(){
@@ -152,4 +152,49 @@ btnClick(){
     }
 ```
 
-3.
+3. 动态路由嵌套
+
+- 动态路由的工作流程：点击router-link,跳转to的地址，to的地址动态的拿到组件里的数据拼接成一个
+
+  完成的地址，然后进入路由中配到到相应的组件，再渲染组件。
+
+  在这个组件中，可以调用$route，获取路由的信息，完成信息的传递
+
+```html
+<router-link :to="'/user/'+userid"> 动态路由嵌套</router-link>
+```
+
+4. Query跳转
+
+```html
+<router-link :to="{path:'/query',query:{userid,age:18,name:'hehe'}}" tag="button">query跳转</router-link>
+```
+
+## 4.$router和$route
+
+> $route表示当前路由
+>
+> 而$router代表的就是整个vue-router对象
+
+## 5.导航守卫
+
+> 监听路由跳转 执行这个回调函数  to是被跳转页，from是跳转页，next是一个函数，一定要调用，才能进行下一步
+
+```js
+//前置守卫
+router.beforeEach((to,from,next) =>{  
+    //操作
+    document.title = to.meta.title   //根据要跳转的页面，改变对应的title
+    next()
+})	
+```
+
+```js
+//后置钩子
+router.afterEach((to,from) =>{
+   console.log(to);
+  console.log(from);
+})
+
+```
+
