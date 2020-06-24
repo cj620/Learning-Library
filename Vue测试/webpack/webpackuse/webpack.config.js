@@ -65,7 +65,7 @@ module.exports={
         loader:'file-loader',
         options:{
           name:'[hash:10].[ext]',
-          outputPath:'assets'
+           
         }
       }
     ]
