@@ -167,3 +167,221 @@ module:{
 ```
 
 ### 4.缓存
+
+#### 1.babel缓存
+
+在babel-loader中新增属性
+
+可以让第二次打包构建速度更快
+
+```js
+{
+        test:/\.js$/,
+        exclude:/node_modules/,
+        loader:'babel-loader',
+        options:{
+         //开启babel缓存，会读取之前的缓存
+         cacheDirectory:true   
+        }
+}
+```
+
+#### 2.文件资源缓存
+
+> hash:  每次webpack构建时会生成一个唯一的hash值
+>
+> **缺点**：因为js和css同时使用一个hash值，如果重新打包会导致所有缓存失效（可我却只改动一个文件）
+
+> chunkhash:根据chunk生成的hash值，如果打包来源于同一个chunk，那么hash值就一样
+>
+> **缺点**：js和css的hash值还是一样，因为css是在js中被引入的，所以同属于一个chunk
+
+> contenthash：根据文件的内容生成hash，不同文件的hash值一定不一样
+>
+> **优点**：让代码上线运行缓存更好使用
+
+```js
+ new MiniCssExtractPlugin({
+      filename:'css/build.[hash:10].css'
+    })
+
+output:{
+    filename:'js/build.[hash:10].js',
+    path:resolve(__dirname,'build')
+  }
+```
+
+### 5.tree shaking
+
+> 去除无效代码
+>
+> 使用条件：1. 必须使用es6模块化 2. 开启production环境
+>
+> 作用：减少代码体积
+
+在package.json中配置
+
+```js
+"sideEffects":false  //设置所有代码都可以进行tree shaking
+                     //缺点：会把没使用到的文件全部去除
+"sideEffects":["*.css","*.less"] //排除数组中的文件不被去除掉
+```
+
+### 6.code split(代码分割)
+
+#### 1.多入口打包
+
+> 有几个入口就输出几个bundle.js
+>
+> 可以在output设置输出文件名，来区分是哪个入口的文件
+>
+> [name].[contenthash:10].js
+
+```js
+entry:{
+    index:'./src/index.js',
+    test:'./src/test.js'
+}
+```
+
+#### 2.optimization分割配置
+
+> 1.可以将node_modules中代码单独打包一个chunk最终输出
+>
+> 2.自动分析多入口chunk中，有没有公共文件。如果有会打包成单独的chunk文件
+
+```js
+optimization:{
+    splitChunks:{
+        chunks:'all'
+    }
+}
+```
+
+另外可以通过js代码，让某个文件被单独打包成一个chunk
+
+import动态导入语法：能让某个文件被单独打包
+
+注释为取得名字
+
+```js
+import(/*webpackChunkName:test*'./test'/)
+	.then(({mul,count}) =>{
+	console.log("----")
+	})
+	.catch(()=>{
+	console.log("----")
+	})
+```
+
+### 7.lazy loading(懒加载)
+
+> 正常加载：可以认为是并行加载，同时加载多个文件，没有顺序
+>
+> 懒加载：当文件需要时再加载，可能会造成卡顿
+>
+> 预加载（prefetch）:等其他资源加载完毕，浏览器空闲了，再偷偷加载资源（兼容性差）
+
+```js
+import(/*webpackChunkName:'test',webpackPrefetch:true*/'./test').then(res =>console.log(res));
+```
+
+### 8.PWA
+
+> 渐进式网络开发应用程序（离线可访问）
+>
+> workbox ---> workbox-webpack-plugin
+
+```js
+cnpm i -D workbox-webpack-plugin
+```
+
+```js
+plugins:[
+  new WorkWebpackPlugin.GenerateSW({
+     //生成一个serviceworker快速启动
+     //删除旧的serviceworker
+     //生成一个serviceworker配置文件
+     clientsClaim:true,
+     skipWaiting:true
+  })
+]
+```
+
+- 注册serviceworker
+- 处理兼容性问题
+
+```js
+//在入口文件中
+if('serviceworker' in navigator){
+    window.addEventListener('load',() =>{
+      navigator.serviceworker
+        .register('/service-worker.js')
+        .then(()=>console.log('sw注册成功了'))
+        .catch(() =>{console.log('sw注册失败了')})
+    })
+}
+```
+
+> 这样会有几个问题
+>
+> 1. eslint不认识window、navigator全局变量
+>
+>    解决：需要修改package.json中的eslint配置
+>
+> 2. sw代码必须运行再服务器上，以下方式进行测试
+>
+>  -->node.js
+>
+> --> cnpm i serve -g
+>
+> serve -s build 启动服务器，将build目录下的所有 资源作为静态资源暴露出去
+
+```js
+"eslintConfig":{
+    "env":{
+        "browser":true   //支持浏览器端的全局变量
+    }
+}
+```
+
+### 9.多进程打包
+
+> 加载thread-loader，一般给babel-loader使用
+>
+> babel-loader处理完交给thread-loader，开启多进程打包
+>
+> 缺点：进程启动大概600ms，进程通信也有开销
+>
+> 只有工作消耗时间比较长，才需要多	进程打包
+
+```js
+{
+    loader:'thread-loader',
+    options:{
+      workers:2       //进程两个
+    }
+}
+```
+
+### 10.externals
+
+> 拒绝一些包被打包进项目
+>
+> 可使用cdn引入
+
+添加属性
+
+```js
+externals:{
+    jquery:'jQuery' //拒绝jQuery打包进来
+}
+```
+
+### 11.dll
+
+> 使用dll技术，对某些库（第三方库：jquery、react、vue）进行单独打包
+>
+> 不想写了 看视频
+
+[视频解析](https://www.bilibili.com/video/BV1e7411j7T5?p=30)
