@@ -1,14 +1,38 @@
-# Webpack的性能优化
+# Webpack的优化方案总结
 
 > 开发环境性能优化：
 >
-> - 优化打包构建的速度
+> + 优化打包构建的速度
+>
+> -----------HMR（热模块替换）
+>
 > - 优化代码调试
+>
+> -----------source-map
 
 > 生产环境性能优化：
 >
 > - 优化打包构建的速度
-> - 优化代码运行的性能
+>
+> -----------oneOf
+>
+> -----------babel缓存
+>
+> - 优化代码运行的性
+>
+> -----------缓存（hash-chunkhash-contenthash）
+>
+> -----------tree shaking(生产模式自启动)
+>
+> -----------code split
+>
+> -----------懒加载/预加载
+>
+> -----------PWA
+>
+> -----------externals
+>
+> -----------dll
 
 ## 1.开发环境性能优化
 
@@ -144,7 +168,9 @@ devtool有以下设置
 
 module会将loader的source-map加进来
 
-### 3.oneOf优化
+## 2.开发环境性能优化
+
+### 1.oneOf优化
 
 > 一个数组,oneOf数组里的loader只会匹配一个
 >
@@ -166,7 +192,7 @@ module:{
   }
 ```
 
-### 4.缓存
+### 2.缓存
 
 #### 1.babel缓存
 
@@ -211,7 +237,7 @@ output:{
   }
 ```
 
-### 5.tree shaking
+### 3.tree shaking
 
 > 去除无效代码
 >
@@ -227,7 +253,7 @@ output:{
 "sideEffects":["*.css","*.less"] //排除数组中的文件不被去除掉
 ```
 
-### 6.code split(代码分割)
+### 4.code split(代码分割)
 
 #### 1.多入口打包
 
@@ -274,7 +300,7 @@ import(/*webpackChunkName:test*'./test'/)
 	})
 ```
 
-### 7.lazy loading(懒加载)
+### 5.lazy loading(懒加载)
 
 > 正常加载：可以认为是并行加载，同时加载多个文件，没有顺序
 >
@@ -286,7 +312,7 @@ import(/*webpackChunkName:test*'./test'/)
 import(/*webpackChunkName:'test',webpackPrefetch:true*/'./test').then(res =>console.log(res));
 ```
 
-### 8.PWA
+### 6.PWA
 
 > 渐进式网络开发应用程序（离线可访问）
 >
@@ -345,7 +371,7 @@ if('serviceworker' in navigator){
 }
 ```
 
-### 9.多进程打包
+### 7.多进程打包
 
 > 加载thread-loader，一般给babel-loader使用
 >
@@ -364,11 +390,11 @@ if('serviceworker' in navigator){
 }
 ```
 
-### 10.externals
+### 8.externals
 
 > 拒绝一些包被打包进项目
 >
-> 可使用cdn引入
+> 让着这些包使用cdn引入，减轻代码负担
 
 添加属性
 
@@ -378,7 +404,7 @@ externals:{
 }
 ```
 
-### 11.dll
+### 9.dll
 
 > 使用dll技术，对某些库（第三方库：jquery、react、vue）进行单独打包
 >

@@ -160,29 +160,66 @@ plugins: [
 
 ```js
 devServer:{
-	port:3000,
-    progerss:true,
-    contentBase:'./build'
+	port:3000,                           //端口
+    compress:true,                        //启动gzip压缩
+    contentBase:resolve(__dirname,'build'),//运行目录
+    host:'localhost',						 //域名
+    open:true,								//是否自启浏览器
+    hot:true,								//启动HMR
+    clientLogLevel:'none',      				//不要显示服务器日志
+    quite:true								//除了一些基本启动信息，其他内容都不要显示
+    watchOptions:{
+        ignored:/node_modules/    			//忽略监视文件
+    },
+    overlay:false							//不要全屏的显示报错信息
+    proxy:{									//解决开发环境下的跨域问题
+    ...
+    }
 }
 ```
 
 ### 7.optimization
 
-> 优化属性，用来对压缩插件的使用
+> 优化属性
 >
 > **开发环境不会使用优化属性**
+>
+> [视频解析](https://www.bilibili.com/video/BV1e7411j7T5?p=38)
 
 ```js
  optimization: {
-    minimizer: [
-      new UglifyJsPlugin({    //js压缩插件
-        cache: true,
-        parallel: true,
-        sourceMap: true // set to true if you want JS source maps
-      }),
-      new OptimizeCSSAssetsPlugin({})   //css压缩插件
-    ]
+     splitChunk:{
+         chunks:'all',
+         minSize:30*1024,       //分割chunk最小为30kb
+         maxSize:0,				//最大没有限制
+         minChunks:1,			//要提取的chunk最少被引用一次
+         ...
+     }
+     minimizer:[   //设置plugin
+       new XXXXXplugin({
+        cache:true,           //开启缓存
+        parallel:true,	      //开启多进程打包
+        sourceMap:true		  //启动source-map
+       })
+     ]
   }
+```
+
+### 8.resolve
+
+> 配置解析模块
+
+```js
+resolve:{
+         配置解析模块路径别名
+    alias:{
+        $css:resolve(__dirname,'src/css')   //让$css来代替src下的css文件夹
+    },
+        //配置省略文件的后缀名
+    extensions:['.js','.json','.css'],
+        //告诉webpack解析模块是去找哪个目录 
+    modules:[resolve(__dirname,'../../node_modules'),'node_modules']
+}
 ```
 
 
