@@ -25,5 +25,45 @@ create-react-app project(项目名称)
 
 ```jsx
 let h1 = <h1>helloworld<h1/>  //使用jsx语法，可以创建js元素对象
+        					  //注意：jsx元素对象，或者组件对象，必须只有一个根元素
+ReactDOM.render(h1,document.getElementById('root'))  //将h1渲染到root上	
+```
+
+## 3.React JSX
+
+> 优点：
+>
+> 1. JSX执行更快，编译为JavaScript代码式进行优化
+> 2. 类型更安全，编译过程如果出错就不能编译，及时发现错误
+> 3. JSX编写模板更加简单快速
+>
+> 注意：
+>
+> 1. JSX必须要有根节点
+> 2. 正常的普通HTML元素要小写，如果大写，则默认认为是组件
+
+### 1.JSX表达式
+
+1. 由HTML元素构成
+2. 中间如果需要插入变量用{}
+3. {}中间可以使用表达式
+4. {}中间表达式中可以使用JSX对象
+5. 属性和HTML内容一样都是用{}插入内容
+
+### 2.JSX_style
+
+1. class,style,不可以存在多个class属性
+
+```jsx
+<div class='abc' calss={'active'}></div>    //错误的表示
+```
+
+2. style样式中，如果存在多个单词的属性组合，第二个单词开始，首字母大写，或者用引号。否则报错
+
+```jsx
+let Excss = {
+    borderBottom:'1px solid red',   //驼峰
+    'margin-left':'1px'				//字符串方式
+}
 ```
 
