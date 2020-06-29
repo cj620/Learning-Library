@@ -29,7 +29,7 @@ let h1 = <h1>helloworld<h1/>  //使用jsx语法，可以创建js元素对象
 ReactDOM.render(h1,document.getElementById('root'))  //将h1渲染到root上	
 ```
 
-## 3.React JSX
+## 4.React JSX
 
 > 优点：
 >
@@ -65,5 +65,36 @@ let Excss = {
     borderBottom:'1px solid red',   //驼峰
     'margin-left':'1px'				//字符串方式
 }
+```
+
+##  5.React组件
+
+### 1.函数式组件
+
+```jsx
+function cpn(){           //组件
+  return (
+  	<div>
+      <h1>函数式组件</h1>  
+    </div>
+  )
+}
+
+ReactDOM.render(<cpn/>,document.qeurySelector('#root '))   //渲染	
+```
+
+### 2.类组件
+
+```jsx
+class cpn extends React.Component{
+  render(){      //render方法来渲染视图
+    return (
+      <div>
+      	<h1>类组件</h1>
+      </div>
+    )
+  }
+}
+ReactDOM.render(<cpn/>,document.qeurySelector('#root '))   //渲染	
 ```
 
