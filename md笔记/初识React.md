@@ -69,10 +69,15 @@ let Excss = {
 
 ##  5.React组件
 
+> 函数式组件：函数式比较简单，一般用于静态没有交互事件内容的组件页面。
+
+> 类组件：一般又称为动态组件，那么一般会有交互或数据修改的操作
+
 ### 1.函数式组件
 
 ```jsx
-function cpn(){           //组件
+function cpn(props){           //组件
+    console.log(props.name)    //cj	
   return (
   	<div>
       <h1>函数式组件</h1>  
@@ -80,13 +85,21 @@ function cpn(){           //组件
   )
 }
 
-ReactDOM.render(<cpn/>,document.qeurySelector('#root '))   //渲染	
+ReactDOM.render(<cpn name='cj' />,document.qeurySelector('#root '))   //渲染	
 ```
 
 ### 2.类组件
 
 ```jsx
 class cpn extends React.Component{
+  constructor(props){
+    //数据的初始化
+    super(props)
+    this.state={   //x相当于data
+      time:new Date().toLocaleTimeString(),
+      name:'cj'
+    }
+  }
   render(){      //render方法来渲染视图
     return (
       <div>
@@ -95,6 +108,29 @@ class cpn extends React.Component{
     )
   }
 }
-ReactDOM.render(<cpn/>,document.qeurySelector('#root '))   //渲染	
+ReactDOM.render(<cpn/>,document.qeurySelector('#root '))   //渲染		
+```
+
+## 6 React State
+
+> 相当于VUE的data但是使用方式跟VUE不同
+
+> 不要直接修改state的数据，最好使用setState，这样才能够渲染到页面上
+>
+> 因为通过this.setState修改完数据后，并不会立即修改DOM里面的内容
+>
+> React会在这个函数内容所有设置的状态改变后，统一对比虚拟DOM，然后再统一修改，提升性能
+>
+> 与小程序类似
+
+```jsx
+//
+componentDidMount(){
+  setInterval(()=>{
+    this.setState({   //修改数据
+      time:new Date().toLocaleTimeString()
+    })
+  },1000)
+}
 ```
 

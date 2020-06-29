@@ -20,6 +20,7 @@
     "file-loader": "^6.0.0",
     "html-loader": "^1.1.0",
     "html-webpack-plugin": "^4.3.0",
+    "import-local": "^3.0.2",
     "less-loader": "^6.1.2",
     "mini-css-extract-plugin": "^0.9.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
@@ -30,19 +31,19 @@
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
   },
-  "browserslist":{
-    "development":[
+  "browserslist": {
+    "development": [
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
     ],
-    "production":[
+    "production": [
       ">0.2%",
       "not dead",
       "not op_mini all"
     ]
   },
-  "eslintConfig":{
-    "extends":"airbnb-base" 
+  "eslintConfig": {
+    "extends": "airbnb-base"
   }
 }
