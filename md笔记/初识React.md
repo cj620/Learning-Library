@@ -111,7 +111,7 @@ class cpn extends React.Component{
 ReactDOM.render(<cpn/>,document.qeurySelector('#root '))   //渲染		
 ```
 
-## 6 React State
+## 6 .React State
 
 > 相当于VUE的data但是使用方式跟VUE不同
 
@@ -134,3 +134,20 @@ componentDidMount(){
 }
 ```
 
+## 7.React生命周期
+
+生命周期的3个状态：
+
+1. Mounting： 将组件插入到DOM中
+2. Updating： 将数据更新到DOM中
+3. Unmounting： 将组件从DOM中移除
+
+生命周期函数
+
+1. ComponentWillMount: 组件将要渲染
+2. ComponentDidMount：组件以及渲染
+3. ComponentWillUnMount：组件将要被移除
+4. ConponentWillReceiveProps :组件将要接受props数据
+5. ComponentWillUpdate :组件将要更新
+6. ShouldComponentUpdate ：组件接收到state或者props，判断是否更新，返回布尔值
+7. ComponentDidUpdate ：组件已经更新

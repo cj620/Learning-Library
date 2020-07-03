@@ -14,18 +14,22 @@
   <button @click="updataInfo">异步添加</button>
   <button @click="deleInfo">异步删除</button>
   <div>{{$store.state.a.name}}</div>
+  <c-button icon="loading">1213213</c-button>
+  <Button>jjj</Button>
   </div>
 </template>
 
 <script>
 import vue1 from './components/1'
 import vue2 from './components/2'
+import{Button}from 'cj-620/index'
 
 export default {
   name: 'App',
   components: {
     vue1,
-    vue2
+    vue2,
+    "c-button":Button
   },
   methods:{
     add5(count){

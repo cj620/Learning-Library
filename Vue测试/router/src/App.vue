@@ -12,12 +12,17 @@
     <hr/>
      <!-- keep-alive的属性 ： exclude：组件的name（排除这个组件的keep功能）   include相反-->
     <keep-alive exclude="user"><router-view></router-view></keep-alive>
+
   </div>
 </template>
 
 <script>
+import {Button} from '../node_modules/cj-620/index'
 export default {
   name: 'App',
+  components:{
+    'c-button':Button
+  },
   data(){
     return{
       userid:'cj'
