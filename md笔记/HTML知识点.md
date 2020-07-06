@@ -1,5 +1,13 @@
 # HTML知识点
 
+> 标签：新增语义化标签（`aside / figure / section / header / footer / nav`等），增加多媒体标签`video`和`audio`，使得样式和结构更加分离
+>
+> 属性：增强表单，主要是增强了`input`的type属性；`meta`增加charset以设置字符集；`script`增加async以异步加载脚本
+>
+> 存储：增加`localStorage`、`sessionStorage`和`indexedDB`，引入了`application cache`对web和应用进行缓存
+>
+> API：增加`拖放API`、`地理定位`、`SVG绘图`、`canvas绘图`、`Web Worker`、`WebSocket`
+
 ## 1.H5的新特性
 
 > 1. 声明方式
